@@ -2,7 +2,9 @@ require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    class Zoom < OmniAuth::Strategies::OAuth2
+    class ZoomAccount < OmniAuth::Strategies::OAuth2
+      option :name, 'zoom_account'
+
       option :client_options, {
         :site => 'https://zoom.us',
         :authorize_url => 'https://zoom.us/oauth/authorize',
@@ -24,7 +26,7 @@ module OmniAuth
       end
 
       def user
-        @user ||= { 
+        @user ||= {
           first_name: raw_info['first_name'],
           last_name:  raw_info['last_name'],
           email:      raw_info['email'],
